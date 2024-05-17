@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export async function convertTextToPdf(text: string) {
     try {
         const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}/create-pdf?apiKey=${import.meta.env.VITE_API_KEY}`,
+            `${process.env.VITE_API_URL}/create-pdf?apiKey=${process.env.VITE_API_KEY}`,
             { text },
             { responseType: 'blob' }
         );
