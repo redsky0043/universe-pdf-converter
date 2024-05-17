@@ -13,7 +13,7 @@ const Button: FC<IButtonProps> = ({
     text = 'submit',
     type = 'primary',
     disabled = false,
-    onClick
+    onClick,
 }) => {
     const buttonTypeClass = type === 'primary' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-slate-950';
 
@@ -22,7 +22,7 @@ const Button: FC<IButtonProps> = ({
             type="submit"
             disabled={disabled}
             onClick={onClick}
-            className={`px-8 py-2 text-white rounded-md focus:outline-none transition duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none ${buttonTypeClass}`}
+            className={`px-4 py-2 text-white rounded-md focus:outline-none transition duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none max-w-full md:max-w-fit md:px-8 text-sm ${buttonTypeClass}`}
         >
             {text}
         </button>

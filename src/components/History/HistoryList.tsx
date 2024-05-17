@@ -4,10 +4,11 @@ import usePdfHistory from "../../hooks/usePdfHistory";
 import HistoryListItem from "./HistoryListItem";
 
 interface IHistoryListProps {
+    pdfData: string,
     setPdfData: Dispatch<SetStateAction<string>>,
 }
 
-const HistoryList: FC<IHistoryListProps> = ({ setPdfData }) => {
+const HistoryList: FC<IHistoryListProps> = ({ setPdfData,  pdfData  }) => {
     const { history } = usePdfHistory();
     
     const isEmptyHistory = history.length === 0
@@ -23,6 +24,7 @@ const HistoryList: FC<IHistoryListProps> = ({ setPdfData }) => {
                         key={historyItem.id}
                         PDFItem={historyItem}
                         setPdfData={setPdfData}
+                        isActive={pdfData === historyItem.base64}
                     />
                 ))}
             </ul>

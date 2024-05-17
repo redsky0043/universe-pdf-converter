@@ -1,30 +1,43 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  ## Локальний запуск проекту:
+  - `npm run dev`: запуск dev версії проекту,
+  - `npm run build`: генерація build версії,
+  - `npm run lint`: запуск лінтера,
+  - `npm run preview`: запуск build версії проекту (спершу треба виконати `npm run build`),
+  - `npm run test`: запуск тестів
 
-Currently, two official plugins are available:
+# Universe PDF Converter
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Universe PDF Converter - це веб-додаток для конвертації текстових даних в формат PDF. Додаток надає можливість ввести текст для конвертації, побачити попередній вигляд PDF та зберегти конвертовані файли. Розроблений на React з використанням TypeScript.
 
-## Expanding the ESLint configuration
+## Опис структури
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- ### components 
+  - Ця папка містить всі компоненти React, які використовуються у нашому додатку. Компоненти тут розбиті за функціональністю та призначенням.
+  
+  - Приклади компонентів: Button, Input, Form, Card, Modal, Table.
+  - Структура компонентів: Кожен компонент може містити файли з JSX, CSS або іншими ресурсами, що використовуються в компоненті.
 
-- Configure the top-level `parserOptions` property like this:
+- ### hooks
+  - У цій папці розміщені кастомні хуки React, які допомагають у керуванні станом компонентів, виконанні ефектів та взаємодії з React API.
+  - Приклади хуків: useFetch, useStateWithLocalStorage, useEventListener.
+  - Структура хуків: Кожен хук може містити один або декілька файлів, які включають визначення хуку та його використання.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- ### services
+  - В цій папці розташовані сервіси та утиліти, які використовуються для взаємодії з зовнішніми API, обробки даних та виконання різних операцій.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- ### styles
+  - Тут розташовані файли зі стилями, які використовуються у нашому додатку. Це можуть бути глобальні стилі, стилі компонентів або теми.
+  - Приклади стилів: global.css, button.css, theme.scss.
+  - Структура стилів: Кожен файл може містити CSS або препроцесорні файли зі стилями, які описують вигляд різних елементів і компонентів.
+
+- ### types
+  - У цій папці знаходяться файли з типами TypeScript, які використовуються для опису структури даних, інтерфейсів та типізованих констант.
+  - Приклади типів: interfaces.ts, enums.ts, types.ts.
+  - Структура типів: Кожен файл містить опис типів даних, їх використання та зв'язки між різними частинами додатку.
+
+- ### utils
+  - Тут розташовані різноманітні утиліти, які допомагають виконувати різні завдання, такі як обробка даних, робота з датами та часом, робота зі строками тощо.
+  - Приклади утиліт: dateUtils.ts, stringUtils.ts, mathUtils.ts.
+  - Структура утиліт: Кожен файл містить функції або класи, які надають корисні інструменти для роботи з даними та виконання різних завдань.

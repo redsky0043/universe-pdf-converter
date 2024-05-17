@@ -32,6 +32,7 @@ const ConvertForm: FC<IFormProps> = ({ setPdfData }) => {
             const pdfName = `PDF_${new Date().toISOString()}.pdf`;
 
             addToHistory({ id: uuid(), name: pdfName, base64: pdfBase64 });
+            setInputText('')
         } catch (error) {
             console.log("error :", error);
             toast.error('Failed to convert')
