@@ -46,13 +46,13 @@ const PDFViewer: FC<PDFViewerPropsType> = ({ file }) => {
         setNumPages(numPages);
     }
 
-    const handleChangePage = useCallback((direction: Direction) => {
+    const handleChangePage = (direction: Direction) => {
         if (direction === Direction.Left && currentPageNumber !== 1) {
             setCurrentPageNumber(currentPageNumber - 1);
         } else if (direction === Direction.Right && currentPageNumber !== numPages) {
             setCurrentPageNumber(currentPageNumber + 1);
         }
-    }, [numPages, currentPageNumber]);
+    }
 
     const isSinglePage = numPages === 1
 
