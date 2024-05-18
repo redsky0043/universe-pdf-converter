@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { toast } from "react-toastify";
+import { notificationService } from "../utils";
 
 let currentController: AbortController
 
@@ -20,7 +20,7 @@ export async function convertTextToPdfService(text: string) {
             }
         );
 
-        toast.success('success')
+        notificationService.success('success')
 
         return response.data;
     } catch (error) {
@@ -28,7 +28,7 @@ export async function convertTextToPdfService(text: string) {
             console.log('Request canceled', error.message);
         } else {
             console.error('Error converting text to PDF:', error);
-            toast.error('Failed to convert text to PDF');
+            notificationService.error('Failed to convert text to PDF');
             throw new Error('Failed to convert text to PDF');
         }
     }

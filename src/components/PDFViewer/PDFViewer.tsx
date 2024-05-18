@@ -1,6 +1,6 @@
 import { pdfjs } from 'react-pdf';
 import { Document, Page } from 'react-pdf';
-import {FC, useCallback, useEffect, useState} from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { useResizeObserver } from '@wojtekmaj/react-hooks';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -29,8 +29,8 @@ enum Direction {
 const PDFViewer: FC<PDFViewerPropsType> = ({ file }) => {
     const [numPages, setNumPages] = useState<number>(1);
     const [currentPageNumber, setCurrentPageNumber] = useState<number>(1);
-    const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
     const [containerWidth, setContainerWidth] = useState<number>();
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     const onResize = useCallback<ResizeObserverCallback>((entries) => {
         const [entry] = entries;
@@ -40,20 +40,16 @@ const PDFViewer: FC<PDFViewerPropsType> = ({ file }) => {
         }
     }, []);
 
-    useResizeObserver(containerRef, resizeObserverOptions, onResize);
+    useResizeObserver(containerRef.current, resizeObserverOptions, onResize);
 
     const onDocumentLoadSuccess = ({ numPages }: PDFDocumentProxy): void => {
         setNumPages(numPages);
     }
 
     const handleChangePage = useCallback((direction: Direction) => {
-        if (direction === Direction.Left) {
-            if (currentPageNumber === 1) return;
+        if (direction === Direction.Left && currentPageNumber !== 1) {
             setCurrentPageNumber(currentPageNumber - 1);
-        }
-
-        if (direction === Direction.Right) {
-            if (currentPageNumber === numPages) return;
+        } else if (direction === Direction.Right && currentPageNumber !== numPages) {
             setCurrentPageNumber(currentPageNumber + 1);
         }
     }, [numPages, currentPageNumber]);
@@ -62,10 +58,10 @@ const PDFViewer: FC<PDFViewerPropsType> = ({ file }) => {
 
     useEffect(() => {
         setCurrentPageNumber(1);
-    }, []);
+    }, [file]);
 
     return (
-        <div ref={setContainerRef}>
+        <div ref={containerRef}>
             <Document file={file} onLoadSuccess={onDocumentLoadSuccess} options>
                 <Page
                     pageNumber={currentPageNumber}

@@ -1,12 +1,11 @@
 import { v4 as uuid } from 'uuid';
-import { toast } from "react-toastify";
 import { useState, FC, ChangeEvent, FormEvent, Dispatch, SetStateAction } from "react";
 
 import { Button } from "../Button";
 import { InputText } from "../InputText";
 import { usePdfHistory } from "../../providers";
-import { convertBlobToBase64 } from "../../utils";
 import { convertTextToPdfService } from "../../services";
+import { convertBlobToBase64, notificationService } from "../../utils";
 
 type FormPropsType = {
     setPdfData: Dispatch<SetStateAction<string>>,
@@ -35,7 +34,7 @@ const ConvertForm: FC<FormPropsType> = ({ setPdfData }) => {
             setInputText('')
         } catch (error) {
             console.log("error :", error);
-            toast.error('Failed to convert')
+            notificationService.error('Failed to convert')
         }
     };
 
