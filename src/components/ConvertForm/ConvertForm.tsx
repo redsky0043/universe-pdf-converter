@@ -4,15 +4,15 @@ import { useState, FC, ChangeEvent, FormEvent, Dispatch, SetStateAction } from "
 
 import { Button } from "../Button";
 import { InputText } from "../InputText";
-import { usePdfHistory } from "../../hooks";
-import { convertTextToPdf } from "../../services/convertTextToPdf";
-import { convertBlobToBase64 } from "../../utils/convertBlobToBase64.ts";
+import { usePdfHistory } from "../../providers";
+import { convertBlobToBase64 } from "../../utils";
+import { convertTextToPdfService } from "../../services";
 
-interface IFormProps {
+type FormPropsType = {
     setPdfData: Dispatch<SetStateAction<string>>,
 }
 
-const ConvertForm: FC<IFormProps> = ({ setPdfData }) => {
+const ConvertForm: FC<FormPropsType> = ({ setPdfData }) => {
     const [inputText, setInputText] = useState("");
     const { addToHistory } = usePdfHistory();
 
@@ -24,8 +24,8 @@ const ConvertForm: FC<IFormProps> = ({ setPdfData }) => {
         e.preventDefault();
 
         try {
-            const pdfBlob = await convertTextToPdf(inputText);
-            const pdfBase64 = (await convertBlobToBase64(pdfBlob)) as string;
+            const pdfBlob = await convertTextToPdfService(inputText);
+            const pdfBase64 = await convertBlobToBase64(pdfBlob);
 
             setPdfData(pdfBase64);
 

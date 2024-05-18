@@ -1,13 +1,13 @@
 import { FC, ChangeEventHandler } from "react";
 
-interface IInputTextProps {
+type InputTextPropsType = {
     value: string,
     isRequired?: boolean,
     placeholder?: string,
     handleChange: ChangeEventHandler<HTMLTextAreaElement>,
 }
 
-const InputText: FC<IInputTextProps> = ({
+const InputText: FC<InputTextPropsType> = ({
     value,
     isRequired = true,
     placeholder = 'enter text',

@@ -17,7 +17,7 @@ const resizeObserverOptions = {};
 
 const maxWidth = 800;
 
-interface IPDFViewerProps {
+type PDFViewerPropsType = {
     file: string,
 }
 
@@ -26,7 +26,7 @@ enum Direction {
     Right = '+',
 }
 
-const PDFViewer: FC<IPDFViewerProps> = ({ file }) => {
+const PDFViewer: FC<PDFViewerPropsType> = ({ file }) => {
     const [numPages, setNumPages] = useState<number>(1);
     const [currentPageNumber, setCurrentPageNumber] = useState<number>(1);
     const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
@@ -62,7 +62,7 @@ const PDFViewer: FC<IPDFViewerProps> = ({ file }) => {
 
     useEffect(() => {
         setCurrentPageNumber(1);
-    }, [file]);
+    }, []);
 
     return (
         <div ref={setContainerRef}>
@@ -75,7 +75,7 @@ const PDFViewer: FC<IPDFViewerProps> = ({ file }) => {
                     <div className="mt-4 flex items-center gap-x-4 justify-between">
                         <Button
                             text='Prev page'
-                            type='secondary'
+                            variant='secondary'
                             disabled={currentPageNumber === 1}
                             onClick={() => handleChangePage(Direction.Left)}
                         />
@@ -84,7 +84,7 @@ const PDFViewer: FC<IPDFViewerProps> = ({ file }) => {
                         </p>
                         <Button
                             text='Next page'
-                            type='secondary'
+                            variant='secondary'
                             disabled={currentPageNumber === numPages}
                             onClick={() => handleChangePage(Direction.Right)}
                         />

@@ -2,9 +2,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 const Notifications = () => (
-  <ToastContainer
-      position='bottom-left'
-  />
+  <ToastContainer position='bottom-left'/>
 )
 
 export default Notifications

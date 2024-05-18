@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { convertTextToPdf } from './convertTextToPdf';
+import { convertTextToPdfService } from './convertTextToPdfService.ts';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -12,7 +12,7 @@ describe('convertTextToPdf', () => {
 
         const inputText = 'Test convertTextToPdf';
 
-        const result = await convertTextToPdf(inputText);
+        const result = await convertTextToPdfService(inputText);
 
         expect(mockedAxios.post).toHaveBeenCalledWith(
             `${process.env.VITE_API_URL}/create-pdf?apiKey=${process.env.VITE_API_KEY}`,
@@ -27,6 +27,6 @@ describe('convertTextToPdf', () => {
 
         const inputText = 'Hello, world!';
 
-        await expect(convertTextToPdf(inputText)).rejects.toThrow('Failed to convert text to PDF');
+        await expect(convertTextToPdfService(inputText)).rejects.toThrow('Failed to convert text to PDF');
     });
 });

@@ -2,24 +2,23 @@ import { FC } from "react";
 
 type ButtonType = 'primary' | 'secondary';
 
-interface IButtonProps {
+type ButtonPropsType = {
     text: string,
-    type?: ButtonType,
+    variant?: ButtonType,
     disabled?: boolean,
     onClick?: () => void,
 }
 
-const Button: FC<IButtonProps> = ({
+const Button: FC<ButtonPropsType> = ({
     text = 'submit',
-    type = 'primary',
+    variant = 'primary',
     disabled = false,
     onClick,
 }) => {
-    const buttonTypeClass = type === 'primary' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-slate-950';
+    const buttonTypeClass = variant === 'primary' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-slate-950';
 
     return (
         <button
-            type="submit"
             disabled={disabled}
             onClick={onClick}
             className={`px-4 py-2 text-white rounded-md focus:outline-none transition duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none max-w-full md:max-w-fit md:px-8 text-sm ${buttonTypeClass}`}

@@ -1,14 +1,14 @@
 import { FC, Dispatch, SetStateAction } from "react";
 
-import usePdfHistory from "../../hooks/usePdfHistory";
+import { usePdfHistory } from "../../providers";
 import HistoryListItem from "./HistoryListItem";
 
-interface IHistoryListProps {
+type HistoryListPropsType = {
     pdfData: string,
     setPdfData: Dispatch<SetStateAction<string>>,
 }
 
-const HistoryList: FC<IHistoryListProps> = ({ setPdfData,  pdfData  }) => {
+const HistoryList: FC<HistoryListPropsType> = ({ setPdfData,  pdfData  }) => {
     const { history } = usePdfHistory();
     
     const isEmptyHistory = history.length === 0
